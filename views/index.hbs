@@ -1,2 +1,23 @@
-<h1>{{title}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#map">Find Spätis</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+{{!-- Only show if user is logged out or they are not a user  --}}
+<div class="landing">
+    <h1>Looking for that special späti you spent 30 minutes wandering for?</h1>
+    <p>
+        Späti Finder is here to help you search for any Spätis in your area.
+    </p>
+</div>
+
+<div class="map-view" id="map-view">
+	<div id="map" style="width: 100vw; height: 100vh;"></div> 
+	<script src="/js/mapbox.js"></script>	
+</div>
