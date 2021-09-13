@@ -8,6 +8,6 @@ item: {
 image: String,
 });
 
-const Inventory = model("Inventory", inventorySchema);
+const Inventory = model("Inventory", userSchema);
 
 module.exports = Inventory;
