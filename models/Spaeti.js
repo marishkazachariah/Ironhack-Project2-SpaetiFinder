@@ -1,17 +1,12 @@
 const { Schema, model } = require("mongoose");
 
-const spaetiSchema = new Schema({
+const userSchema = new Schema({
   name: { type: String },
   imageUrl: { 
     type: String,
     default: '/public/images/Späti.jpg'
  },
-  reviews: [
-    {
-        type: Schema.Types.ObjectId,
-        ref: 'Reviews'
-    }
-  ],
+  reviews: [],
   hasSeating: false,
   hasAtm: false,
   hasWC: false,
