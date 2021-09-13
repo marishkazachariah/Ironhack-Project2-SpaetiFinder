@@ -9,7 +9,13 @@ const userSchema = new Schema({
   googleId: String,
   avatar: String,
   reviews: [],
-  favSpaeti: []
+  favSpaeti: [],
+  role: {
+    type: String,
+    // enumeration: only 'admin' and 'user' are allowed values for the role field
+    enum: ['user', 'admin'],
+    default: 'user'
+  }
 });
 
 const User = model("User", userSchema);
