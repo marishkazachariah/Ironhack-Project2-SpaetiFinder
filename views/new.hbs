@@ -1,6 +1,6 @@
 <h2>Add a new späti</h2>
 
-<form action='/' method='POST'>
+<form action='/spaeti' method='POST'>
   <label for='name'>Name: </label>
   <input type='text' name='name' id='name' />
   <br />
@@ -16,5 +16,47 @@
   <label for='hasWC'>This späti has a bathroom </label>
   <input type='checkbox' id='hasWC' name='hasWC' value='true' />
   <br />
+  <h2>Add some product prices</h2>
+
+  <h3>Drinks</h3>
+  <select name='product'>
+    <option value='club-mate-500'>Club Mate 500ml</option>
+    <option value='mate-mate-500'>Mate Mate 500ml</option>
+    <option value='fritz-cola-500'>Fritz Cola 500ml</option>
+    <option value='fritz-cola-330'>Fritz Cola 330ml</option>
+    <option value='rothaus-pils-500'>Rothaus Pils 500ml</option>
+    <option value='sternburger-export-500'>Sternburger Export 500ml</option>
+    <option value='augustiner-helles-500'>Augustiner Helles 500ml</option>
+    <option value='bayreuther-hell-500'>Bayreuther Hell 500ml</option>
+  </select>
+
+  <select name='price' id=''>
+    <option value='0,80'>0,80€</option>
+    <option value='1,00'>1,00€</option>
+    <option value='1,20'>1,20€</option>
+    <option value='1,40'>1,40€</option>
+    <option value='1,60'>1,60€</option>
+    <option value='1,80'>1,80€</option>
+    <option value='2,00'>2,00€</option>
+    <option value='2,20'>2,20€</option>
+    <option value='2,40'>2,40€</option>
+    <option value='2,60'>2,60€</option>
+    <option value='2,80'>2,80€</option>
+    <option value='3,00'>3,00€</option>
+    <option value='3,20'>3,20€</option>
+    <option value='3,40'>3,40€</option>
+    <option value='3,60'>3,60€</option>
+    <option value='3,80'>3,80€</option>
+    <option value='4,00'>4,00€</option>
+    <option value='4,20'>4,20€</option>
+    <option value='4,40'>4,40€</option>
+    <option value='4,60'>4,60€</option>
+    <option value='4,80'>4,80€</option>
+    <option value='5,00'>5,00€</option>
+
+  </select>
+
+  <br />
+
   <button type='submit'>Add this spaeti</button>
 </form>
