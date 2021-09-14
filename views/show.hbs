@@ -1,11 +1,24 @@
 <h1>{{spaeti.name}}</h1>
 <p>{{spaeti.location.address.street}}</p>
-<p>{{spaeti.hasSeating}}</p>
-<p>{{spaeti.hasWC}}</p>
-<p>{{spaeti.hasAtm}}</p>
+
+{{#if spaeti.hasSeating}}
+  <p>Outdoor seating ✅</p>
+{{else}}
+  <p>Outdoor seating ❌</p>
+{{/if}}
+{{#if spaeti.hasWC}}
+  <p>Bathroom ✅</p>
+{{else}}
+  <p>Bathroom ❌</p>
+{{/if}}
+{{#if spaeti.hasAtm}}
+  <p>ATM ✅</p>
+{{else}}
+{{/if}}
+<p>ATM ❌</p>
 <h2>Products:</h2>
 <p>{{spaeti.inventory}}</p>
 <h2>Reviews:</h2>
 <p>{{spaeti.reviews}}</p>
 
-<a href="/spaeti/edit/{{spaeti._id}}">Edit this Späti ✏️</a>
+<a href='/spaeti/edit/{{spaeti._id}}'>Edit this Späti ✏️</a>
