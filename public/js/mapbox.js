@@ -1,6 +1,6 @@
 mapboxgl.accessToken ="pk.eyJ1IjoidHJhbnNpcmVudCIsImEiOiJja255bXRtZGowbHF0MnBvM3U4d2J1ZG5vIn0.IVcxB9Xw6Tcc8yHGdK_0zA";
 const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
-let address;
+let address = [];
 
 
 // setting up 
@@ -8,7 +8,7 @@ axios.get('/spaeti/')
   .then(res => {
     const spaetis = res.data;
     spaetis.forEach(spaeti => {
-      address = spaeti.location.address.street;
+      address.push(spaeti.location.address.street);
     })
     console.log(address);
   })
