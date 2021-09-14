@@ -35,4 +35,47 @@ router.post('/', (req, res, next) => {
     });
 });
 
+
+// Späti view
+ 
+router.get('/spaeti', (req, res, next) => {
+    
+  Spaeti.find()
+      .then(spaetiFromDB => {
+          
+          console.log('this is the spaeti route');
+          res.render('spaeti', { spaetis: spaetiFromDB });
+      })
+      .catch(err => {
+          next(err);
+      })
+})
+
+router.post('/spaeti', (req, res, next) => {
+  
+  const { name, imageUrl, reviews, hasSeating, hasAtm, hasWC, inventory, price } = req.body;
+  const list = '';
+  list += '<option select></option>'
+  
+  // create a new spaeti in the database
+  Spaeti.create({
+      name: name,
+      imageUrl: imageUrl,
+      reviews: reviews,
+      hasSeating: hasSeating,
+      hasAtm: hasAtm,
+      hasWC: hasWC,
+      inventory: inventory,
+      price: price
+  })
+      .then(createdSpaeti => {
+          console.log(createdSpaeti);
+          
+          res.redirect(`/spaeti/${createdSpaeti._id}`);
+      })
+      .catch(err => next(err));
+});
+
+
+
 module.exports = router;
