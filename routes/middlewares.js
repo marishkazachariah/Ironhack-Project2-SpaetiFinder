@@ -5,6 +5,7 @@ const loginCheck = () => {
       // in node-basic-auth: req.session.user
       if (req.isAuthenticated()) {
         // proceed as planned
+        console.log('LOGGED IN')
         next();
       } else {
         res.redirect('/login');
