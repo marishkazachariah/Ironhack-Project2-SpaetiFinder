@@ -19,44 +19,59 @@
   <h2>Add some product prices</h2>
 
   <h3>Drinks</h3>
-  <select name='product'>
-    <option value='club-mate-500'>Club Mate 500ml</option>
-    <option value='mate-mate-500'>Mate Mate 500ml</option>
-    <option value='fritz-cola-500'>Fritz Cola 500ml</option>
-    <option value='fritz-cola-330'>Fritz Cola 330ml</option>
-    <option value='rothaus-pils-500'>Rothaus Pils 500ml</option>
-    <option value='sternburger-export-500'>Sternburger Export 500ml</option>
-    <option value='augustiner-helles-500'>Augustiner Helles 500ml</option>
-    <option value='bayreuther-hell-500'>Bayreuther Hell 500ml</option>
+
+  <select id='productSelector' name='name'>
+    <option value='Club Mate 500ml'>Club Mate 500ml</option>
+    <option value='Mate Mate 500ml'>Mate Mate 500ml</option>
+    <option value='Fritz Cola 500ml'>Fritz Cola 500ml</option>
+    <option value='Fritz Cola 330ml'>Fritz Cola 330ml</option>
+    <option value='Rothaus Pils 500ml'>Rothaus Pils 500ml</option>
+    <option value='Sternburger Export 500ml'>Sternburger Export 500ml</option>
+    <option value='Augustiner Helles 500ml'>Augustiner Helles 500ml</option>
+    <option value='Bayreuther Hell 500ml'>Bayreuther Hell 500ml</option>
   </select>
 
-  <select name='price' id=''>
-    <option value='0,80'>0,80€</option>
-    <option value='1,00'>1,00€</option>
-    <option value='1,20'>1,20€</option>
-    <option value='1,40'>1,40€</option>
-    <option value='1,60'>1,60€</option>
-    <option value='1,80'>1,80€</option>
-    <option value='2,00'>2,00€</option>
-    <option value='2,20'>2,20€</option>
-    <option value='2,40'>2,40€</option>
-    <option value='2,60'>2,60€</option>
-    <option value='2,80'>2,80€</option>
-    <option value='3,00'>3,00€</option>
-    <option value='3,20'>3,20€</option>
-    <option value='3,40'>3,40€</option>
-    <option value='3,60'>3,60€</option>
-    <option value='3,80'>3,80€</option>
-    <option value='4,00'>4,00€</option>
-    <option value='4,20'>4,20€</option>
-    <option value='4,40'>4,40€</option>
-    <option value='4,60'>4,60€</option>
-    <option value='4,80'>4,80€</option>
-    <option value='5,00'>5,00€</option>
+  <select id='priceSelector' name='price' id=''>
+    <option value='0,80€'>0,80€</option>
+    <option value='1,00€'>1,00€</option>
+    <option value='1,20€'>1,20€</option>
+    <option value='1,40€'>1,40€</option>
+    <option value='1,60€'>1,60€</option>
+    <option value='1,80€'>1,80€</option>
+    <option value='2,00€'>2,00€</option>
+    <option value='2,20€'>2,20€</option>
+    <option value='2,40€'>2,40€</option>
+    <option value='2,60€'>2,60€</option>
+    <option value='2,80€'>2,80€</option>
+    <option value='3,00€'>3,00€</option>
+    <option value='3,20€'>3,20€</option>
+    <option value='3,40€'>3,40€</option>
+    <option value='3,60€'>3,60€</option>
+    <option value='3,80€'>3,80€</option>
+    <option value='4,00€'>4,00€</option>
+    <option value='4,20€'>4,20€</option>
+    <option value='4,40€'>4,40€</option>
+    <option value='4,60€'>4,60€</option>
+    <option value='4,80€'>4,80€</option>
+    <option value='5,00€'>5,00€</option>
 
   </select>
+  <p id='addProduct'>Add</p>
+  <p id='productDisplay'></p>
 
   <br />
+  <script>
+    let productArray = [];
+    document.querySelector("#addProduct").addEventListener("click", function() {
+    let productName = document.querySelector("#productSelector").value;
+    let productPrice = document.querySelector("#priceSelector").value; 
+    let newProduct = {}; 
+    newProduct.name = productName; 
+    newProduct.price = productPrice; 
+    console.log(newProduct); 
+    productArray.push(newProduct);
+    document.querySelector("#productDisplay").innerHTML +=`<p>${newProduct.name}, ${newProduct.price}</p>` });
+  </script>
 
-  <button type='submit'>Add this spaeti</button>
+  <button type='submit'>Add this späti</button>
 </form>
