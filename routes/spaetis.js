@@ -40,6 +40,7 @@ router.post('/spaeti', (req, res, next) => {
   // const imgName = req.file.originalname;
   // const publicId = req.file.filename;
 
+  
   // create a new spaeti in the database
   Spaeti.create({
     name: name,
@@ -61,6 +62,8 @@ router.post('/spaeti', (req, res, next) => {
     .catch((err) => next(err));
 });
 
+
+// show Späti details
 router.get('/spaeti/:id', (req, res, next) => {
   Spaeti.findById(req.params.id)
     .then((spaeti) => {
@@ -69,6 +72,43 @@ router.get('/spaeti/:id', (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+});
+
+
+// Edit Späti:
+router.get('/spaeti/edit/:id', (req, res, next) => {
+
+	const spaetiId = req.params.id;
+	Spaeti.findById(spaetiId)
+		.then(spaetiFromDB => {
+      console.log('SPÄTI EDIT')
+			res.render('spaetiEdit', { spaeti: spaetiFromDB });
+		})
+		.catch(err => {
+			next(err);
+		})
+});
+
+router.post('/spaeti/edit/:id', (req, res, next) => {
+	const spaetiId = req.params.id;
+	const { name, image, hasSeating, hasAtm, hasWC, price } = req.body;
+	
+
+	Spaeti.findByIdAndUpdate(spaetiId, {
+		name: name,
+		image: image,
+    hasSeating: hasSeating,
+    hasAtm: hasAtm,
+    hasWC: hasWC,
+    price: price
+	}, { new: true })
+		.then(updatedSpaeti => {
+			console.log('Späti editing DONE')
+			res.redirect(`/spaeti/${updatedSpaeti._id}`);
+		})
+		.catch(err => {
+			next(err);
+		})
 });
 
 module.exports = router;
