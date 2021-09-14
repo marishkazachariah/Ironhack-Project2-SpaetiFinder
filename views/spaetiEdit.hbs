@@ -1,0 +1,21 @@
+<h1>Edit this Späti ✏️</h1>
+{{#with spaeti}}
+	<form action="/spaeti/edit/{{_id}}" method="POST">
+	    <label for='name'>Name: </label>
+        <input type='text' name='name' id='name' value="{{name}}"/>
+  <br />
+    <label for='image'>Choose file to upload an image</label>
+    <input type='file' id='image' name='image' accept='.jpg, .jpeg, .png' />
+  <br />
+    <label for='hasSeating'>Does this Späti have outdoor seating? </label>
+    <input type='checkbox' id='hasSeating' name='hasSeating' value='true' />
+  <br />
+    <label for='hasAtm'>Does this Späti have an ATM </label>
+    <input type='checkbox' id='hasAtm' name='hasAtm' value='true' />
+  <br />
+    <label for='hasWC'>Does this Späti have a bathroom </label>
+    <input type='checkbox' id='hasWC' name='hasWC' value='true' />
+  <br />
+	    <button type="submit">Update this Späti</button>
+	</form>
+{{/with}}
