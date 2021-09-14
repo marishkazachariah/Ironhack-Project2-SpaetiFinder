@@ -1,17 +1,16 @@
-mapboxgl.accessToken ="pk.eyJ1IjoidHJhbnNpcmVudCIsImEiOiJja255bXRtZGowbHF0MnBvM3U4d2J1ZG5vIn0.IVcxB9Xw6Tcc8yHGdK_0zA";
+mapboxgl.accessToken =
+  "pk.eyJ1IjoidHJhbnNpcmVudCIsImEiOiJja255bXRtZGowbHF0MnBvM3U4d2J1ZG5vIn0.IVcxB9Xw6Tcc8yHGdK_0zA";
 const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
 let address = [];
 
-
-// setting up 
-axios.get('/spaeti/')
-  .then(res => {
-    const spaetis = res.data;
-    spaetis.forEach(spaeti => {
-      address.push(spaeti.location.address.street);
-    })
-    console.log(address);
-  })
+// setting up
+axios.get("/spaeti/").then((res) => {
+  const spaetis = res.data;
+  spaetis.forEach((spaeti) => {
+    address.push(spaeti.location.address.street);
+  });
+  console.log(address);
+});
 
 const center = [13.4532321, 52.5331092];
 const map = new mapboxgl.Map({
@@ -32,54 +31,54 @@ map.addControl(nav, "top-left");
 // popups can be closed by user
 const popup = new mapboxgl.Popup({
   closeButton: true,
+  closeOnClick: false,
+  closeOnMove: false,
 });
-
-popup
-  .setLngLat(center)
-  .setHTML("<h1>Hello 👋</h1>")
-  // .setMaxWidth('200px')
-  // you can also add a form or button to send something off
-  .addTo(map);
 
 // setting coordinates
 const coords = [
-    [13.405,  52.52],
-    [13.6, 52.6]
-]
+  [13.405, 52.52],
+  [13.6, 52.6],
+];
 
-coords.forEach(coord => {
-    new mapboxgl.Marker({
-        color: 'red',
-        draggable: true // if you want to drag a marker 
-    })
+
+coords.forEach((coord) => {
+  new mapboxgl.Marker({
+    color: "red",
+    draggable: true, // if you want to drag a marker
+  })
     .setLngLat(coord)
     .addTo(map);
-})
+});
 
-const addMarker = event => {
-    new mapboxgl.Marker({
-        color: "red",
-      })
-        .setLngLat(event.lngLat)
-        .addTo(map)
-        .on('dragend', event => console.log(event.target._lngLat));
-        // you could do an axios.post(to the server)
-        // this would save the markers 
-}
+const addMarker = (event) => {
+  new mapboxgl.Marker({
+    color: "red",
+  })
+    .setLngLat(event.lngLat)
+    .addTo(map)
+    .on("dragend", (event) => console.log(event.target._lngLat));
+  // you could do an axios.post(to the server)
+  // this would save the markers
+};
 
-map.on('click', addMarker);
+map.on("click", addMarker);
 
 // great to detect when user clicks on a map and console log() it
-map.on('click', (event) => {
-    // console.log('i clicked on the map'); // detects click
-    // console.log(event.lngLat);  // gets coordinate of mouse click on map
-
-})
+map.on("click", (event) => {
+  popup
+  .setLngLat(event.lngLat)
+  .setHTML('<a href="/new" style="text-decoration: none">Add a Späti Here 🎯</a>')
+  // .setMaxWidth('200px')
+  // you can also add a form or button to send something off
+  .addTo(map);
+  // console.log('i clicked on the map'); // detects click
+  // console.log(event.lngLat);  // gets coordinate of mouse click on map
+});
 
 // setting a marker
-new mapboxgl.Marker({
-  color: "red",
-})
-  .setLngLat(center)
-  .addTo(map);
-
+// new mapboxgl.Marker({
+//   color: "red",
+// })
+//   .setLngLat(center)
+//   .addTo(map);
