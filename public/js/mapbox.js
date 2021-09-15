@@ -1,4 +1,8 @@
 mapboxgl.accessToken ="pk.eyJ1IjoidHJhbnNpcmVudCIsImEiOiJja255bXRtZGowbHF0MnBvM3U4d2J1ZG5vIn0.IVcxB9Xw6Tcc8yHGdK_0zA";
+const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+
+
+
 const center = [13.4532321, 52.5331092];
 const map = new mapboxgl.Map({
   container: "map", // container ID
@@ -68,4 +72,3 @@ new mapboxgl.Marker({
 })
   .setLngLat(center)
   .addTo(map);
-
