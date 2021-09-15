@@ -84,7 +84,7 @@ router.post('/spaeti', (req, res, next) => {
     })
     .then((createdSpaeti) => {
       console.log('back end log', createdSpaeti); 
-      res.redirect(`/spaeti/${createdSpaeti._id}`);
+      res.json(createdSpaeti);
     })
     .catch((err) => next(err));
    }) 

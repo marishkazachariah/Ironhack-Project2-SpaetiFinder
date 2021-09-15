@@ -94,8 +94,7 @@ let hasWC = document.querySelector('#hasWC').value
     let newProduct = {}; 
     newProduct.name = productName; 
     newProduct.price = productPrice; 
-    newProduct.imageUrl = (document.querySelector("#productSelector").value
-    console.log(productArray); 
+    newProduct.imageUrl = productName
     
     productArray.push(newProduct);
 
@@ -118,10 +117,10 @@ let hasWC = document.querySelector('#hasWC').value
         hasWC: document.querySelector('#hasWC').value,
         inventory: productArray
       })
-      .then(createdSpati => {
-        console.log('this is the spati', createdSpati)
+      .then(createdSpaeti => {
+        console.log(createdSpaeti)
+        window.location.replace(`http://localhost:3000/spaeti/${createdSpaeti.data._id}`)
       })
-      {{!-- console.log(productArray) --}}
     }  
   </script>
 
