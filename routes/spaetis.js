@@ -83,8 +83,8 @@ router.post('/spaeti', (req, res, next) => {
       price: price,
     })
     .then((createdSpaeti) => {
-      //console.log(createdSpaeti);
-      res.redirect(`/spaeti/${createdSpaeti._id}`);
+      console.log('back end log', createdSpaeti); 
+      res.json(createdSpaeti);
     })
     .catch((err) => next(err));
    }) 
