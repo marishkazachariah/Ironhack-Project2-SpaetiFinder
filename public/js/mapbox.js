@@ -39,7 +39,7 @@ const addMarker = (event) => {
   popup
     .setLngLat(coordinates)
     .setHTML(
-      '<form action="/new" method="POST"><div><a href="/new" style="text-decoration: none">Add a Späti Here 🎯</a></div></form><div><button>Remove Marker</button></div>'
+      '<form action="/new" method="POST"><div><button type="submit">Add a Späti Here 🎯</button></div></form><div><button>Remove Marker</button></div>'
     )
     // .setMaxWidth('200px')
     // you can also add a form or button to send something off
@@ -91,7 +91,18 @@ const addMarker = (event) => {
   //   .catch(error => {
   //     console.log(error.response);
   //   });
+
+  // to do: post to street, plz, city and replace innertext with variables: street, plz, city
+  // axios.post('/new', {
+  //   street: document.getElementById('street').value,
+  //   plz: document.getElementById('zip').value,
+  //   city: document.getElementById('city').value
+  // })
+  // .then(createdAddress => {
+  //   console.log(createdAddress)
+  // })
 };
+
 
 map.on("click", addMarker);
 // axios.post('/', (req, res, next) => {
