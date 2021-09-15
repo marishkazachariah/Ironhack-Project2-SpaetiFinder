@@ -35,8 +35,9 @@ const spaetiSchema = new Schema({
   },
   inventory: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Item',
+      name: String,
+      price: String,
+      imageUrl: String
     },
   ],
   price: {

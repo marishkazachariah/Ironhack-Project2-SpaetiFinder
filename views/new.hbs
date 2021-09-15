@@ -1,20 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <h2>Add a new späti</h2>
 
 <form action='/spaeti' method='POST'>
   <label for='name'>Name: </label>
-  <input type='text' name='name' id='name' />
+  <input id="spatiName" type='text' name='name' id='name' />
   <br />
   <label for='image'>Choose file to upload</label>
-  <input type='file' id='image' name='image' accept='.jpg, .jpeg, .png' />
+  <input id="image" type='file' id='image' name='image' accept='.jpg, .jpeg, .png' />
   <br />
   <label for='hasSeating'>This späti has outdoor seating </label>
-  <input type='checkbox' id='hasSeating' name='hasSeating' value='true' />
+  <input id="hasSeating"type='checkbox' id='hasSeating' name='hasSeating' value=false />
   <br />
   <label for='hasAtm'>This späti has an ATM </label>
-  <input type='checkbox' id='hasAtm' name='hasAtm' value='true' />
+  <input id="hasAtm"type='checkbox' id='hasAtm' name='hasAtm' value=false />
   <br />
   <label for='hasWC'>This späti has a bathroom </label>
-  <input type='checkbox' id='hasWC' name='hasWC' value='true' />
+  <input id="hasWC"type='checkbox' id='hasWC' name='hasWC' value=false />
   <br />
   <label for='address'>Address: </label>
   <input type="text" placeholder="Street" name="street">
@@ -24,18 +26,21 @@
   <h2>Add some product prices</h2>
 
   <h3>Drinks</h3>
-  <select name='product'>
-    <option value='club-mate-500'>Club Mate 500ml</option>
-    <option value='mate-mate-500'>Mate Mate 500ml</option>
-    <option value='fritz-cola-500'>Fritz Cola 500ml</option>
-    <option value='fritz-cola-330'>Fritz Cola 330ml</option>
-    <option value='rothaus-pils-500'>Rothaus Pils 500ml</option>
-    <option value='sternburger-export-500'>Sternburger Export 500ml</option>
-    <option value='augustiner-helles-500'>Augustiner Helles 500ml</option>
-    <option value='bayreuther-hell-500'>Bayreuther Hell 500ml</option>
+
+  {{!-- findOne(or findMany)(<by name>) --}}
+
+  <select id='productSelector' name='item'>
+    <option value='Club Mate 500ml'>Club Mate 500ml</option>
+    <option value='Mate Mate 500ml'>Mate Mate 500ml</option>
+    <option value='Fritz Cola 500ml'>Fritz Cola 500ml</option>
+    <option value='Fritz Cola 330ml'>Fritz Cola 330ml</option>
+    <option value='Rothaus Pils 500ml'>Rothaus Pils 500ml</option>
+    <option value='Sternburger Export 500ml'>Sternburger Export 500ml</option>
+    <option value='Augustiner Helles 500ml'>Augustiner Helles 500ml</option>
+    <option value='Bayreuther Hell 500ml'>Bayreuther Hell 500ml</option>
   </select>
 
-  {{!-- <select name='price' id=''>
+  <select id="priceSelector" name='price' id=''>
     <option value='0,80'>0,80€</option>
     <option value='1,00'>1,00€</option>
     <option value='1,20'>1,20€</option>
@@ -59,9 +64,63 @@
     <option value='4,80'>4,80€</option>
     <option value='5,00'>5,00€</option>
 
-  </select> --}}
+  </select>
+
+  <p id='addProduct'>Add</p>
+  <p id='startOver'>Start Over</p>
+  <p id='productDisplay'></p>
 
   <br />
 
-  <button type='submit'>Add this spaeti</button>
-</form>
+  <button onclick=addSpati(event) >Add this späti</button>
+
+  </form>
+  
+  <script>
+let spatiName = document.getElementById('spatiName').value
+let image = document.querySelector('#image').value
+let hasSeating = document.querySelector('#hasSeating').value
+let hasAtm = document.querySelector('#hasAtm').value
+let hasWC = document.querySelector('#hasWC').value
+
+
+
+
+    let productArray = [];
+    document.querySelector("#addProduct").addEventListener("click", function() {
+      console.log(document.getElementById('spatiName').value)
+    let productName = document.querySelector("#productSelector").value;
+    let productPrice = document.querySelector("#priceSelector").value; 
+    let newProduct = {}; 
+    newProduct.name = productName; 
+    newProduct.price = productPrice; 
+    newProduct.imageUrl = productName
+    
+    productArray.push(newProduct);
+
+
+    document.querySelector("#productDisplay").innerHTML +=`<p>${newProduct.name} - <strong>${newProduct.price}</strong></p>` 
+    });
+
+    document.querySelector("#startOver").addEventListener("click", function() {
+      productArray.splice(0, productArray.length);
+      document.querySelector("#productDisplay").innerText = ''
+        });
+
+    function addSpati(event) {
+      event.preventDefault()
+      axios.post('/spaeti', {
+        name: (document.getElementById('spatiName').value),
+        imageUrl: document.querySelector('#image').value,
+        hasSeating: document.querySelector('#hasSeating').value,
+        hasAtm: document.querySelector('#hasAtm').value,
+        hasWC: document.querySelector('#hasWC').value,
+        inventory: productArray
+      })
+      .then(createdSpaeti => {
+        console.log(createdSpaeti)
+        window.location.replace(`http://localhost:3000/spaeti/${createdSpaeti.data._id}`)
+      })
+    }  
+  </script>
+
