@@ -112,4 +112,20 @@ router.post('/spaeti/edit/:id', (req, res, next) => {
 		})
 });
 
+router.post('/spaeti/:id/reviews', (req, res, next) => {
+const user = req.user.username
+console.log('this is the user', user)
+const spaetiId = req.params.id;
+const { text } = req.body;
+Spaeti.findByIdAndUpdate(spaetiId, { $push: { reviews: { user: user, text: text } } }, { new: true })
+  .then(spaetiFromDB => {
+    console.log(spaetiFromDB);
+    // redirect to the detail view of this book
+    res.redirect(`/spaeti/${spaetiId}`);
+  })
+  .catch(err => {
+    next(err);
+  })
+});
+
 module.exports = router;

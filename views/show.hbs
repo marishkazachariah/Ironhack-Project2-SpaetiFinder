@@ -18,7 +18,28 @@
 <p>ATM ❌</p>
 <h2>Products:</h2>
 <p>{{spaeti.inventory}}</p>
-<h2>Reviews:</h2>
-<p>{{spaeti.reviews}}</p>
+<h3>Reviews</h3>
+
+{{!-- List the reviews --}}
+
+{{#if spaeti.reviews}}
+	{{#each spaeti.reviews}}
+		<div>
+			<p>{{text}}</p>
+			<p>Added by: {{user}}</p>
+		</div>
+	{{/each}}
+{{else}}
+
+<p>No reviews yet</p>
+
+{{/if}}
+
+<h3>Add a review</h3>
+<form action="/spaeti/{{spaeti._id}}/reviews" method="POST">
+	<label for="text">Your review: </label>
+	<input type="text" name="text" id="text">
+	<button type="submit">Add this review</button>
+</form>
 
 <a href='/spaeti/edit/{{spaeti._id}}'>Edit this Späti ✏️</a>
