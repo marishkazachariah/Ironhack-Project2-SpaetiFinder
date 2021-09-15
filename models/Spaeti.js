@@ -13,10 +13,7 @@ const spaetiSchema = new Schema({
   },
   reviews: [
     {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
+      user: String,
       text: String,
     },
   ],

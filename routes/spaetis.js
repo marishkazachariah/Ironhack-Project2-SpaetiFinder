@@ -114,6 +114,8 @@ router.post('/spaeti/edit/:id', (req, res, next) => {
 
 router.post('/spaeti/:id/reviews', (req, res, next) => {
 const user = req.user.username
+// console.log(Object.values(user))
+// console.log('this is the params', req.params)
 console.log('this is the user', user)
 const spaetiId = req.params.id;
 const { text } = req.body;
