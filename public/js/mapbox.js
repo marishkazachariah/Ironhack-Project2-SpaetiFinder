@@ -83,13 +83,17 @@ const addMarker = (event) => {
     marker.remove();
   });
   // you could do an axios.post(to the server)
-  // this would save the markers
-  // markers.push(coordinates);
-  // console.log(markers);
+  // axios
+  //   .post("/new")
+  //   .then(response => {
+  //     console.log(response.data[0]);
+  //   })
+  //   .catch(error => {
+  //     console.log(error.response);
+  //   });
 };
 
 map.on("click", addMarker);
-
 // axios.post('/', (req, res, next) => {
 //   req.body = markers;
 // })
