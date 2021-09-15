@@ -4,19 +4,19 @@
 
 <form action='/spaeti' method='POST'>
   <label for='name'>Name: </label>
-  <input id="name" type='text' name='name' id='name' />
+  <input id="spatiName" type='text' name='name' id='name' />
   <br />
   <label for='image'>Choose file to upload</label>
   <input id="image" type='file' id='image' name='image' accept='.jpg, .jpeg, .png' />
   <br />
   <label for='hasSeating'>This späti has outdoor seating </label>
-  <input id="hasSeating"type='checkbox' id='hasSeating' name='hasSeating' value='true' />
+  <input id="hasSeating"type='checkbox' id='hasSeating' name='hasSeating' value=false />
   <br />
   <label for='hasAtm'>This späti has an ATM </label>
-  <input id="hasAtm"type='checkbox' id='hasAtm' name='hasAtm' value='true' />
+  <input id="hasAtm"type='checkbox' id='hasAtm' name='hasAtm' value=false />
   <br />
   <label for='hasWC'>This späti has a bathroom </label>
-  <input id="hasWC"type='checkbox' id='hasWC' name='hasWC' value='true' />
+  <input id="hasWC"type='checkbox' id='hasWC' name='hasWC' value=false />
   <br />
   <label for='address'>Address: </label>
   <input type="text" placeholder="Street" name="street">
@@ -77,21 +77,24 @@
   </form>
   
   <script>
-let name = document.querySelector('#name').value
+let spatiName = document.getElementById('spatiName').value
 let image = document.querySelector('#image').value
 let hasSeating = document.querySelector('#hasSeating').value
 let hasAtm = document.querySelector('#hasAtm').value
 let hasWC = document.querySelector('#hasWC').value
 
 
+
+
     let productArray = [];
     document.querySelector("#addProduct").addEventListener("click", function() {
+      console.log(document.getElementById('spatiName').value)
     let productName = document.querySelector("#productSelector").value;
     let productPrice = document.querySelector("#priceSelector").value; 
     let newProduct = {}; 
     newProduct.name = productName; 
     newProduct.price = productPrice; 
-    newProduct.imageUrl = ''
+    newProduct.imageUrl = (document.querySelector("#productSelector").value
     console.log(productArray); 
     
     productArray.push(newProduct);
@@ -100,25 +103,25 @@ let hasWC = document.querySelector('#hasWC').value
     document.querySelector("#productDisplay").innerHTML +=`<p>${newProduct.name} - <strong>${newProduct.price}</strong></p>` 
     });
 
-       document.querySelector("#startOver").addEventListener("click", function() {
-         productArray.splice(0, productArray.length);
-         document.querySelector("#productDisplay").innerText = ''
-           });
+    document.querySelector("#startOver").addEventListener("click", function() {
+      productArray.splice(0, productArray.length);
+      document.querySelector("#productDisplay").innerText = ''
+        });
 
-function addSpati(event) {
-  event.preventDefault()
-  axios.post('/spaeti', {
-    name: name,
-    imageUrl: image,
-    hasSeating: hasSeating,
-    hasAtm: hasAtm,
-    hasWC: hasWC,
-    {{!-- inventory: productArray --}}
-  })
-  .then(createdSpati => {
-    console.log('this is the spati', createdSpati)
-  })
-  {{!-- console.log(productArray) --}}
-}  
+    function addSpati(event) {
+      event.preventDefault()
+      axios.post('/spaeti', {
+        name: (document.getElementById('spatiName').value),
+        imageUrl: document.querySelector('#image').value,
+        hasSeating: document.querySelector('#hasSeating').value,
+        hasAtm: document.querySelector('#hasAtm').value,
+        hasWC: document.querySelector('#hasWC').value,
+        inventory: productArray
+      })
+      .then(createdSpati => {
+        console.log('this is the spati', createdSpati)
+      })
+      {{!-- console.log(productArray) --}}
+    }  
   </script>
 
