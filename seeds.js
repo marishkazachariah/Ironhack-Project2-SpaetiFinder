@@ -192,6 +192,7 @@ const spaetis = [
         city: 'Berlin',
       },
     },
+    
     hasSeating: true,
     hasAtm: false,
     hasWC: false,

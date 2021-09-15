@@ -2,6 +2,14 @@ const router = require('express').Router();
 const Spaeti = require('../models/Spaeti.js');
 const User = require('../models/User.js');
 const Item = require('../models/Item.js');
+
+const MapboxClient = require('mapbox');
+const accessToken = "pk.eyJ1IjoidHJhbnNpcmVudCIsImEiOiJja255bXRtZGowbHF0MnBvM3U4d2J1ZG5vIn0.IVcxB9Xw6Tcc8yHGdK_0zA";
+const client = new MapboxClient(accessToken);
+
+
+
+
 // const { uploader, cloudinary } = require('../config/cloudinary');
 
 router.get('/new', (req, res, next) => {
@@ -15,7 +23,7 @@ router.get('/new', (req, res, next) => {
 router.get('/spaeti', (req, res, next) => {
   Spaeti.find()
     .then((spaetiFromDB) => {
-      console.log('this is the spaeti route');
+      
       // res.render('spaeti', { spaetis: spaetiFromDB });
       res.json(spaetiFromDB);
     })
@@ -29,38 +37,57 @@ router.post('/spaeti', (req, res, next) => {
     name,
     imageUrl,
     reviews,
+    street,
+    city,
+    zip,
     hasSeating,
     hasAtm,
     hasWC,
     inventory,
     price,
   } = req.body;
-  const list = '';
-  list += '<option select></option>';
+  //const list = '';
+  // list += '<option select></option>';
+  //console.log(req.body)
   // const imgPath = req.file.path;
   // const imgName = req.file.originalname;
   // const publicId = req.file.filename;
-
-  
-  // create a new spaeti in the database
-  Spaeti.create({
-    name: name,
-    imageUrl: imageUrl,
-    // imgPath: imgPath,
-    // imgName: imgName,
-    reviews: reviews,
-    hasSeating: hasSeating,
-    hasAtm: hasAtm,
-    hasWC: hasWC,
-    inventory: inventory,
-    price: price,
-  })
+  const address = `${street}, ${city}, ${zip}`;
+  client.geocodeForward(address)
+  .then(response => {
+    // res is the http response, including: status, headers and entity properties
+    var data = response.entity.features[0].geometry.coordinates; // data is the geocoding result as parsed JSON
+    const latitude = data[0]
+    const longitude = data[1]
+    console.log('THIS IS THE NEW LOG', latitude, longitude)
+    const location = {
+      address: {
+        street: street,
+        city: city,
+        zipcode: zip,
+      }
+    }
+    Spaeti.create({
+      name: name,
+      imageUrl: imageUrl,
+      // imgPath: imgPath,
+      // imgName: imgName,
+      location: location,
+      latitude: latitude,
+      longitude: longitude,
+      reviews: reviews,
+      hasSeating: hasSeating,
+      hasAtm: hasAtm,
+      hasWC: hasWC,
+      inventory: inventory,
+      price: price,
+    })
     .then((createdSpaeti) => {
-      console.log(createdSpaeti);
-
+      //console.log(createdSpaeti);
       res.redirect(`/spaeti/${createdSpaeti._id}`);
     })
     .catch((err) => next(err));
+   }) 
 });
 
 

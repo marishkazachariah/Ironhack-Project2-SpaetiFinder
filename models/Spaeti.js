@@ -4,13 +4,14 @@ const spaetiSchema = new Schema({
   name: String,
   imageUrl: String,
   location: {
-    coords: [Number],
-    address: {
+  address: {
       street: String,
       zipcode: Number,
       city: String,
     },
   },
+  latitude: Number,
+  longitude: Number,
   reviews: [
     {
       user: {
