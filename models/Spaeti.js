@@ -4,13 +4,14 @@ const spaetiSchema = new Schema({
   name: String,
   imageUrl: String,
   location: {
-    coords: [Number],
-    address: {
+  address: {
       street: String,
       zipcode: Number,
       city: String,
     },
   },
+  latitude: Number,
+  longitude: Number,
   reviews: [
     {
       user: String,
@@ -31,8 +32,9 @@ const spaetiSchema = new Schema({
   },
   inventory: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Item',
+      name: String,
+      price: String,
+      imageUrl: String
     },
   ],
   price: {

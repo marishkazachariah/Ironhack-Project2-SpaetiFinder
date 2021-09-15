@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "hbs": "^4.1.2",
+    "mapbox": "^1.0.0-beta10",
     "mongoose": "^6.0.5",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",

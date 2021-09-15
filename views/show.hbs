@@ -17,7 +17,9 @@
 {{/if}}
 <p>ATM ❌</p>
 <h2>Products:</h2>
-<p>{{spaeti.inventory}}</p>
+{{#each spaeti.inventory}}
+<p>{{name}}</p>
+{{/each}}
 <h3>Reviews</h3>
 
 {{!-- List the reviews --}}
