@@ -47,38 +47,28 @@ const addMarker = (event) => {
     popup
     .setLngLat(event.lngLat)
     .setHTML
-    ('<form action="/new" method="POST"><div><a href="/new" style="text-decoration: none">Add a Späti Here 🎯</a></div><div><button onClick="removeMarker">Remove Marker</button></div></form>')
+    ('<form action="/new" method="POST"><div><a href="/new" style="text-decoration: none">Add a Späti Here 🎯</a></div></form><div><button>Remove Marker</button></div>')
   // .setMaxWidth('200px')
   // you can also add a form or button to send something off
   .addTo(map);
   console.log(coordinates);
+  // removes but adds another marker to the same spot
+  marker.getElement().addEventListener('click', () => {
+    marker.remove();
+  });
   // you could do an axios.post(to the server)
   // this would save the markers
+  markers.push(coordinates);
+  console.log(markers);
 };
 
 map.on("click", addMarker);
 
-// figure out how to remove marker
-function removeMarker() {
-  //marker.remove();
-  console.log("remove");
-}
-function removeMarker() {
-  marker.getElement().addEventListener('click', () => {
-    marker.remove();
-  });
-}
-
-// removes but adds another marker to the same spot
-map.on('click', (event) => {
-  marker.getElement().addEventListener('click', () => {
-    marker.remove();
-  });
-})
-
-// setting a marker
-// new mapboxgl.Marker({
-//   color: "red",
+// axios.post('/', (req, res, next) => {
+//   req.body = markers; 
 // })
-//   .setLngLat(center)
-//   .addTo(map);
+// .then((response) => {
+//   console.log(response);
+// }, (error) => {
+//   next(error);
+// });
