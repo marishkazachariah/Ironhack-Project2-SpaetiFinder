@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <h2>Add a new späti</h2>
 
 <form action='/spaeti' method='POST'>
@@ -20,7 +22,9 @@
 
   <h3>Drinks</h3>
 
-  <select id='productSelector' name='name'>
+  {{!-- findOne(or findMany)(<by name>) --}}
+
+  <select id='productSelector' name='item'>
     <option value='Club Mate 500ml'>Club Mate 500ml</option>
     <option value='Mate Mate 500ml'>Mate Mate 500ml</option>
     <option value='Fritz Cola 500ml'>Fritz Cola 500ml</option>
@@ -57,6 +61,7 @@
 
   </select>
   <p id='addProduct'>Add</p>
+  <p id='startOver'>Start Over</p>
   <p id='productDisplay'></p>
 
   <br />
@@ -68,9 +73,27 @@
     let newProduct = {}; 
     newProduct.name = productName; 
     newProduct.price = productPrice; 
-    console.log(newProduct); 
+    console.log(productArray); 
+    
+    {{!-- axios post  => item.insertMany--}}
+
     productArray.push(newProduct);
-    document.querySelector("#productDisplay").innerHTML +=`<p>${newProduct.name}, ${newProduct.price}</p>` });
+
+    axios.post('/spaeti', (req,res,next) => {
+      Item.insertMany(productArray)
+      .then(response => {
+        console.log('this is the response', response)
+           })
+      .catch(error => console.err(error))
+      }) 
+
+    document.querySelector("#productDisplay").innerHTML +=`<p>${newProduct.name} - <strong>${newProduct.price}</strong></p>` 
+    });
+
+       document.querySelector("#startOver").addEventListener("click", function() {
+         productArray.splice(0, productArray.length);
+         document.querySelector("#productDisplay").innerText = ''
+           });
   </script>
 
   <button type='submit'>Add this späti</button>
