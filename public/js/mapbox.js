@@ -15,6 +15,7 @@ const map = new mapboxgl.Map({
   // pitch: 100   // angle of how the map is tilted
 });
 
+
 const nav = new mapboxgl.NavigationControl();
 map.addControl(nav, "top-left");
 
@@ -49,7 +50,9 @@ coords.forEach(coord => {
 const addMarker = event => {
     new mapboxgl.Marker({
         color: "red",
+        
       })
+      
         .setLngLat(event.lngLat)
         .addTo(map)
         .on('dragend', event => console.log(event.target._lngLat));
@@ -65,6 +68,28 @@ map.on('click', (event) => {
     // console.log(event.lngLat);  // gets coordinate of mouse click on map
 
 })
+
+// show the createdSpäti on the map as a marker
+axios.get('/spaeti/')
+  .then(res => {
+    //console.log(res)
+    const spaetis = res.data
+    for (let i = 0; i < spaetis.length; i++) {
+      const coord = [spaetis[i].longitude, spaetis[i].latitude]
+      //console.log(coord)
+      addMarker2(coord)
+     }
+  })
+
+  async function addMarker2 (coord) {
+    //console.log(mapboxgl)
+    await new mapboxgl.Marker({
+        color: "red",
+      })
+        .setLngLat(coord)
+        .addTo(map) 
+}
+  
 
 // setting a marker
 new mapboxgl.Marker({
