@@ -1,17 +1,7 @@
 mapboxgl.accessToken ="pk.eyJ1IjoidHJhbnNpcmVudCIsImEiOiJja255bXRtZGowbHF0MnBvM3U4d2J1ZG5vIn0.IVcxB9Xw6Tcc8yHGdK_0zA";
 const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
-let address = [];
 
 
-// setting up 
-axios.get('/spaeti/')
-  .then(res => {
-    const spaetis = res.data;
-    spaetis.forEach(spaeti => {
-      address.push(spaeti.location.address.street);
-    })
-    console.log(address);
-  })
 
 const center = [13.4532321, 52.5331092];
 const map = new mapboxgl.Map({
@@ -82,4 +72,3 @@ new mapboxgl.Marker({
 })
   .setLngLat(center)
   .addTo(map);
-
