@@ -59,7 +59,7 @@ router.post('/spaeti', (req, res, next) => {
     var data = response.entity.features[0].geometry.coordinates; // data is the geocoding result as parsed JSON
     const latitude = data[0]
     const longitude = data[1]
-    console.log('THIS IS THE NEW LOG', latitude, longitude)
+    //console.log('THIS IS THE NEW LOG', latitude, longitude)
     const location = {
       address: {
         street: street,
@@ -109,7 +109,7 @@ router.get('/spaeti/edit/:id', (req, res, next) => {
 	const spaetiId = req.params.id;
 	Spaeti.findById(spaetiId)
 		.then(spaetiFromDB => {
-      console.log('SPÄTI EDIT')
+      //console.log('SPÄTI EDIT')
 			res.render('spaetiEdit', { spaeti: spaetiFromDB });
 		})
 		.catch(err => {
@@ -131,7 +131,7 @@ router.post('/spaeti/edit/:id', (req, res, next) => {
     price: price
 	}, { new: true })
 		.then(updatedSpaeti => {
-			console.log('Späti editing DONE')
+			//console.log('Späti editing DONE')
 			res.redirect(`/spaeti/${updatedSpaeti._id}`);
 		})
 		.catch(err => {
