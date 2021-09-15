@@ -33,6 +33,7 @@ const popup = new mapboxgl.Popup({
   closeButton: true,
   closeOnClick: false,
   closeOnMove: false,
+  offset: [0, -30]
 });
 
 // setting coordinates
@@ -51,30 +52,45 @@ coords.forEach((coord) => {
     .addTo(map);
 });
 
+let markers = [];
+let coordinates = [];
+let marker;
 const addMarker = (event) => {
-  new mapboxgl.Marker({
+  marker = new mapboxgl.Marker({
     color: "red",
   })
     .setLngLat(event.lngLat)
     .addTo(map)
     .on("dragend", (event) => console.log(event.target._lngLat));
+    popup
+    .setLngLat(event.lngLat)
+    .setHTML('<div><a href="/new" style="text-decoration: none">Add a Späti Here 🎯</a></div><div><button onClick="removeMarker">Remove Marker</button></div>')
+  // .setMaxWidth('200px')
+  // you can also add a form or button to send something off
+  .addTo(map);
   // you could do an axios.post(to the server)
   // this would save the markers
 };
 
 map.on("click", addMarker);
 
-// great to detect when user clicks on a map and console log() it
-map.on("click", (event) => {
-  popup
-  .setLngLat(event.lngLat)
-  .setHTML('<a href="/new" style="text-decoration: none">Add a Späti Here 🎯</a>')
-  // .setMaxWidth('200px')
-  // you can also add a form or button to send something off
-  .addTo(map);
-  // console.log('i clicked on the map'); // detects click
-  // console.log(event.lngLat);  // gets coordinate of mouse click on map
-});
+// figure out how to remove marker
+function removeMarker() {
+  //marker.remove();
+  console.log("remove");
+}
+// function removeMarker() {
+//   marker.getElement().addEventListener('click', () => {
+//     marker.remove();
+//   });
+// }
+
+// removes but adds another marker to the same spot
+// map.on('click', (event) => {
+//   marker.getElement().addEventListener('click', () => {
+//     marker.remove();
+//   });
+// })
 
 // setting a marker
 // new mapboxgl.Marker({
