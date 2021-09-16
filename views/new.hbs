@@ -1,37 +1,52 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<h2>Add a new späti</h2>
+<div class="container md p-3">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Add a new späti</h2>
+    </div>
 
 <form action='/spaeti' method='POST'>
+  <div class="container md p-3">
   <label for='name'>Name: </label>
   <input id="spatiName" type='text' name='name' id='name' />
-  <br />
-  <label for='image'>Choose file to upload</label>
-  <input id="image" type='file' id='image' name='image' accept='.jpg, .jpeg, .png' />
-  <br />
+  
+
+  <div class="form-check">
   <label for='hasSeating'>This späti has outdoor seating </label>
-  <input id="hasSeating"type='checkbox' id='hasSeating' name='hasSeating' value=false />
-  <br />
+  <input class="form-check-input" id="hasSeating"type='checkbox' id='hasSeating' name='hasSeating' value=false />
+  </div>
+
+  <div class="form-check">
   <label for='hasAtm'>This späti has an ATM </label>
-  <input id="hasAtm"type='checkbox' id='hasAtm' name='hasAtm' value=false />
-  <br />
+  <input class="form-check-input" id="hasAtm" type='checkbox' id='hasAtm' name='hasAtm' value=false />
+  </div>
+
+  <div class="form-check">
   <label for='hasWC'>This späti has a bathroom </label>
-  <input id="hasWC"type='checkbox' id='hasWC' name='hasWC' value=false />
-  <br />
-  <label for='address' name="address">Address: </label>
+  <input class="form-check-input" id="hasWC"type='checkbox' id='hasWC' name='hasWC' value=false />
+  </div>
+  </div>
+  <div class="container md p-3">
+    <div class="card">
+  <label class="card-title" for='address' name="address">Address: </label>
   <input type="text" placeholder="Street" name="street" value="{{street}}">
   <input type="text" placeholder="City" name="city" value="{{city}}">
   <input type="number" name="zip" placeholder="ZIP Code" value="{{plz}}"/>
+  </div>
+  </div>
 
-  <h2>Add some product prices</h2>
 
-  <h3>Drinks</h3>
+  <div class="container md p-3">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Add some product prices</h2>
+      <h3 class="card-title">Drinks</h3>
+    </div>
 
-  {{!-- findOne(or findMany)(<by name>) --}}
-
-  <select id='productSelector' name='item'>
+  <select name='item' id='productSelector' class="form-select" aria-label="Default select example">
+    <option selected>Open this select menu</option>
     <option value='Club Mate 500ml'>Club Mate 500ml</option>
-    <option value='Mate Mate 500ml'>Mate Mate 500ml</option>
     <option value='Fritz Cola 500ml'>Fritz Cola 500ml</option>
     <option value='Fritz Cola 330ml'>Fritz Cola 330ml</option>
     <option value='Rothaus Pils 500ml'>Rothaus Pils 500ml</option>
@@ -40,7 +55,7 @@
     <option value='Bayreuther Hell 500ml'>Bayreuther Hell 500ml</option>
   </select>
 
-  <select id="priceSelector" name='price' id=''>
+  <select id="priceSelector" name='price' class="form-select" aria-label="Default select example">
     <option value='0,80'>0,80€</option>
     <option value='1,00'>1,00€</option>
     <option value='1,20'>1,20€</option>
@@ -63,16 +78,16 @@
     <option value='4,60'>4,60€</option>
     <option value='4,80'>4,80€</option>
     <option value='5,00'>5,00€</option>
-
   </select>
 
-  <p id='addProduct'>Add</p>
-  <p id='startOver'>Start Over</p>
+  <p id='addProduct' class="new-button">Add</p>
+  <p id='startOver' class="new-button">Start Over</p>
   <p id='productDisplay'></p>
 
-  <br />
-
-  <button onclick=addSpati(event) >Add this späti</button>
+ 
+  <div class="add-btn">
+    <button style="width: fit-content;" class="btn btn-dark btn-lg" onclick=addSpati(event) >Add this späti</button>
+  </div>
 
   </form>
   
@@ -88,7 +103,6 @@ let hasWC = document.querySelector('#hasWC').value
 
     let productArray = [];
     document.querySelector("#addProduct").addEventListener("click", function() {
-      console.log(document.getElementById('spatiName').value)
     let productName = document.querySelector("#productSelector").value;
     let productPrice = document.querySelector("#priceSelector").value; 
     let newProduct = {}; 
@@ -118,7 +132,7 @@ let hasWC = document.querySelector('#hasWC').value
         inventory: productArray
       })
       .then(createdSpaeti => {
-        console.log(createdSpaeti)
+    
         window.location.replace(`http://localhost:3000/spaeti/${createdSpaeti.data._id}`)
       })
     }  

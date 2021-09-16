@@ -26,8 +26,9 @@ router.get('/new', (req, res, next) => {
 router.get('/spaetis', (req, res, next) => {
   Spaeti.find()
     .then((spaetiFromDB) => {
-      
+      console.log(spaetiFromDB)
       res.render('spaetizz', { spaetis: spaetiFromDB });
+      
       
     })
     .catch((err) => {
@@ -64,7 +65,7 @@ router.post('/spaeti', (req, res, next) => {
   } = req.body;
   //const list = '';
   // list += '<option select></option>';
-  //console.log(req.body)
+  
   // const imgPath = req.file.path;
   // const imgName = req.file.originalname;
   // const publicId = req.file.filename;
@@ -75,7 +76,7 @@ router.post('/spaeti', (req, res, next) => {
     var data = response.entity.features[0].geometry.coordinates; // data is the geocoding result as parsed JSON
     const latitude = data[0]
     const longitude = data[1]
-    //console.log('THIS IS THE NEW LOG', latitude, longitude)
+    
     const location = {
       address: {
         street: street,
@@ -100,7 +101,7 @@ router.post('/spaeti', (req, res, next) => {
       owner: req.user._id
     })
     .then((createdSpaeti) => {
-      console.log('back end log', createdSpaeti); 
+      
       res.json(createdSpaeti);
     })
     .catch((err) => next(err));
@@ -111,7 +112,7 @@ router.get('/spaeti/delete/:id', loginCheck(), (req, res, next) => {
   
 	const spaetiId = req.params.id;
   const query = { _id: spaetiId, owner: req.user._id }
-  console.log(query)
+  
 	Spaeti.findOneAndDelete(query)
     .then(() => res.redirect('/spaetis'))
     .catch(err => next(err));
@@ -136,7 +137,7 @@ router.get('/spaeti/edit/:id', (req, res, next) => {
 	const spaetiId = req.params.id;
 	Spaeti.findById(spaetiId)
 		.then(spaetiFromDB => {
-      //console.log('SPÄTI EDIT')
+      
 			res.render('spaetiEdit', { spaeti: spaetiFromDB });
 		})
 		.catch(err => {
@@ -158,7 +159,7 @@ router.post('/spaeti/edit/:id', (req, res, next) => {
     price: price
 	}, { new: true })
 		.then(updatedSpaeti => {
-			//console.log('Späti editing DONE')
+			
 			res.redirect(`/spaeti/${updatedSpaeti._id}`);
 		})
 		.catch(err => {
@@ -171,12 +172,12 @@ router.post('/spaeti/edit/:id', (req, res, next) => {
 
 router.post('/spaeti/:id/reviews', (req, res, next) => {
 const user = req.user.username
-console.log('this is the user', user)
+
 const spaetiId = req.params.id;
 const { text } = req.body;
 Spaeti.findByIdAndUpdate(spaetiId, { $push: { reviews: { user: user, text: text } } }, { new: true })
   .then(spaetiFromDB => {
-    console.log(spaetiFromDB);
+    
     // redirect to the detail view of this book
     (res.redirect(`/spaeti/${spaetiId}`));
   })

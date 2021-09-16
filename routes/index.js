@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get('/profile', loginCheck(), (req, res, next) => {
-  console.log('LOGGED IN')
+  
   const loggedInUser = req.user;
   res.render('user/profile', { user: loggedInUser })
 });
