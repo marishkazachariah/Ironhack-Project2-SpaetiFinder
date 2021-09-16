@@ -7,6 +7,7 @@ const MapboxClient = require('mapbox');
 const accessToken = "pk.eyJ1IjoidHJhbnNpcmVudCIsImEiOiJja255bXRtZGowbHF0MnBvM3U4d2J1ZG5vIn0.IVcxB9Xw6Tcc8yHGdK_0zA";
 const client = new MapboxClient(accessToken);
 
+const { loginCheck } = require('./middlewares');
 
 
 
@@ -90,12 +91,24 @@ router.post('/spaeti', (req, res, next) => {
    }) 
 });
 
+router.get('/spaeti/delete/:id', loginCheck(), (req, res, next) => {
+  
+	const spaetiId = req.params.id;
+	Spaeti.findByIdAndDelete(spaetiId)
+		.then(() => {
+			res.redirect('/');
+		})
+		.catch(err => {
+			next(err);
+		})
+});
 
 // show Späti details
 router.get('/spaeti/:id', (req, res, next) => {
+  const loggedInUser = req.user;
   Spaeti.findById(req.params.id)
     .then((spaeti) => {
-      res.render('show.hbs', { spaeti });
+      res.render('show.hbs', { spaeti, user: loggedInUser });
     })
     .catch((err) => {
       next(err);
@@ -138,6 +151,9 @@ router.post('/spaeti/edit/:id', (req, res, next) => {
 			next(err);
 		})
 });
+
+
+
 
 router.post('/spaeti/:id/reviews', (req, res, next) => {
 const user = req.user.username
