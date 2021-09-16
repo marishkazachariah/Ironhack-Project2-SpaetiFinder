@@ -23,12 +23,24 @@ router.get('/new', (req, res, next) => {
 });
 
 // Späti view
+router.get('/spaetis', (req, res, next) => {
+  Spaeti.find()
+    .then((spaetiFromDB) => {
+      
+      res.render('spaetizz', { spaetis: spaetiFromDB });
+      
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 
 router.get('/spaeti', (req, res, next) => {
   Spaeti.find()
     .then((spaetiFromDB) => {
       
-      // res.render('spaeti', { spaetis: spaetiFromDB });
+      //res.render('spaeti', { spaetis: spaetiFromDB });
       res.json(spaetiFromDB);
     })
     .catch((err) => {
