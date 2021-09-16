@@ -44,9 +44,13 @@
 	<button type="submit">Add this review</button>
 </form>
 
+
+
+<div>
+{{#if user}}
 <a href='/spaeti/edit/{{spaeti._id}}'>Edit this Späti ✏️</a>
-
-
+{{/if}}
+</div>
 <div>
 {{#if user}}
 <a href="/spaeti/delete/{{spaeti._id}}">Delete this Späti from the database ❌</a>
