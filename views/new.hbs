@@ -10,13 +10,13 @@
   <input id="image" type='file' id='image' name='image' accept='.jpg, .jpeg, .png' />
   <br />
   <label for='hasSeating'>This späti has outdoor seating </label>
-  <input id="hasSeating"type='checkbox' id='hasSeating' name='hasSeating' value=false />
+  <input id="hasSeating"type='checkbox' id='hasSeating' name='hasSeating' checked/>
   <br />
   <label for='hasAtm'>This späti has an ATM </label>
-  <input id="hasAtm"type='checkbox' id='hasAtm' name='hasAtm' value=false />
+  <input id="hasAtm"type='checkbox' id='hasAtm' name='hasAtm' checked  />
   <br />
   <label for='hasWC'>This späti has a bathroom </label>
-  <input id="hasWC"type='checkbox' id='hasWC' name='hasWC' value=false />
+  <input id="hasWC"type='checkbox' id='hasWC' name='hasWC' checked />
   <br />
   <label for='address'>Address: </label>
   <input type="text" placeholder="Street" name="street" value="{{street}}">
@@ -77,13 +77,11 @@
   </form>
   
   <script>
-let spatiName = document.getElementById('spatiName').value
-let image = document.querySelector('#image').value
-let hasSeating = document.querySelector('#hasSeating').value
-let hasAtm = document.querySelector('#hasAtm').value
-let hasWC = document.querySelector('#hasWC').value
-
-
+let spatiName = document.getElementById('spatiName')
+let image = document.querySelector('#image')
+let hasSeating = document.querySelector('#hasSeating')
+let hasAtm = document.querySelector('#hasAtm')
+let hasWC = document.querySelector('#hasWC')
 
 
     let productArray = [];
@@ -112,9 +110,9 @@ let hasWC = document.querySelector('#hasWC').value
       axios.post('/spaeti', {
         name: (document.getElementById('spatiName').value),
         imageUrl: document.querySelector('#image').value,
-        hasSeating: document.querySelector('#hasSeating').value,
-        hasAtm: document.querySelector('#hasAtm').value,
-        hasWC: document.querySelector('#hasWC').value,
+        hasSeating: document.querySelector('#hasSeating').checked,
+        hasAtm: document.querySelector('#hasAtm').checked,
+        hasWC: document.querySelector('#hasWC').checked,
         inventory: productArray
       })
       .then(createdSpaeti => {
@@ -123,4 +121,6 @@ let hasWC = document.querySelector('#hasWC').value
       })
     }  
   </script>
+
+
 

@@ -1,12 +1,14 @@
 <h1 class='showHeading'>Welcome to {{spaeti.name}}</h1>
 <p>{{spaeti.location.address.street}}</p>
+
+<div class='mainDiv'>
 <div class='showPageDiv'>
   <div>
-    <h2 class='productPrice'></h2> 
+    <p class='productPrice'></> 
 <div class="display-fridge">
   <div class="display-bottles">
 {{#each spaeti.inventory}}
-<img class="drinksImages" src="/images/products/{{name}}.png" alt="">
+<img class="drinksImages" src="/images/products/{{name}}.png" name='{{name}}' value={{price}} alt="">
 {{/each}}
 </div>
 </div>
@@ -14,51 +16,53 @@
 
 {{#if spaeti.hasWC}}
 <div class='bathroom'>
-  <p>Bathroom ✅</p>
+  <p><strong>Bathroom ✅</strong></p>
   <img class='bathroomImg' src="/images/facilities/bathroom_door.png" alt="">
 {{else}}
-  <p>Bathroom ❌</p>
+  <p><strong>Bathroom ❌</strong></p>
   <img class='bathroomImg' src="/images/facilities/bathroom_door-fade.png" alt="">
 {{/if}}
 </div>
 
 <div class='atm'>
 {{#if spaeti.hasAtm}}
-  <p>ATM ✅</p>
+  <p><strong>ATM ✅</strong></p>
   <img class='atmImg'src="/images/facilities/atm_machine1.png" alt="">
 {{else}}
-<p>ATM ❌</p>
+<p><strong>ATM ❌</strong></p>
   <img class='atmImg'src="/images/facilities/atm_machine-fade.png" alt="">
 {{/if}}
 </div>
 
 <div class='outdoorSeating'>
 {{#if spaeti.hasSeating}}
-  <p>Outdoor seating ✅</p>
+  <p><strong>Outdoor seating ✅</strong></p>
   <img class='outdoorSeatingImg' src="/images/facilities/outdoor-seating.jpg" alt="">
 {{else}}
-  <p>Outdoor seating ❌</p>
+  <p><strong>Outdoor seating ❌</strong></p>
     <img class='outdoorSeatingImg' src="/images/facilities/outdoor-seating-fade.png" alt="">
 {{/if}}
 </div>
 
 </div>
+<div class='reviews'>
 <h3>Reviews</h3>
 
 {{!-- List the reviews --}}
 
+
+
+
 {{#if spaeti.reviews}}
 	{{#each spaeti.reviews}}
+  <div class='reviewScroll'>
 		<div class="card mb-3">
       <div class="card-body">
-      <h4 class= "card-title">{{user}}</h3>
+      <h4 class= "card-title">{{user}}</h4>
 			<p class="card-text">Review: {{text}}</p>
 		</div>
  
-    
-    <form action="/spaeti/{{spaeti._id}}/reviews?_method=DELETE" method="POST">
-      <button class="btn btn-sm btn-danger">Delete</button>
-    </form>
+       </div>
        </div>
 	{{/each}}
 {{else}}
@@ -71,33 +75,37 @@
 
 <form action="/spaeti/{{spaeti._id}}/reviews" method="POST">
 	<label for="text">Your review: </label>
-	<input type="text" name="text" id="text">
-	<button type="submit">Add this review</button>
+	<input class="form-control" type="text" name="text" id="text">
+	<button class="btn btn-success" type="submit">Add this review</button>
 </form>
 
 
 
-<div>
+<div >
 {{#if user}}
-<a href='/spaeti/edit/{{spaeti._id}}'>Edit this Späti ✏️</a>
+<a class='editLink' href='/spaeti/edit/{{spaeti._id}}'>Edit this Späti ✏️</a>
 {{/if}}
 </div>
 <div>
 {{#if user}}
-<a href="/spaeti/delete/{{spaeti._id}}">Delete this Späti from the database ❌</a>
+<a class='deleteLink'href="/spaeti/delete/{{spaeti._id}}">Delete this Späti from the database ❌</a>
 {{/if}}
 </div>
 
+</div>
+
+</div>
 
 
 <script>
+  var inventory  = {{{inventory}}}
   let drinkPopups = document.querySelectorAll(".drinksImages")
   let productPrices = document.querySelector(".productPrice")
   console.log('these are the drinks',drinkPopups)
 drinkPopups.forEach(function(drink) { 
   drink.addEventListener("click", function() {
-      {{!-- productPrices.innerHTML = `${spaeti.inventory}` --}}
-      console.log(drink)
+      productPrices.innerHTML= (drink.getAttribute('name') + ': ' + drink.getAttribute('value') +'€')
+      {{!-- filter when object.name is equal to current string --}}
       })
         }); 
 </script>
