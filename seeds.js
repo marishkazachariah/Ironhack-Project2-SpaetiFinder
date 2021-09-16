@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Spaeti = require('./models/Spaeti');
 
-mongoose.connect('mongodb://localhost/SpaetiFinder');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/SpaetiFinder');
 
 const spaetis = [
   {
