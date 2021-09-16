@@ -15,10 +15,10 @@ const { loginCheck } = require('./middlewares');
 
 router.get('/new', (req, res, next) => {
   Spaeti.find().then((spaetiFromDB) => {
-    res.render('new', { spaetis: spaetiFromDB });
     const plz = req.query.plz || "";
     const city = req.query.city || "";
-    const address = req.query.address || "";
+    const street = req.query.street || "";
+    res.render('new', { spaetis: spaetiFromDB, plz: plz, city: city, street: street });
   });
 });
 
