@@ -28,3 +28,74 @@ h1 {
     min-width: 0%;
     display:none;
   }
+
+.showHeading {
+  text-align: center;
+}
+.showPageDiv {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.display-fridge {
+background-image: url("/images/facilities/display-fridge.png");
+background-size:contain;
+background-position: center;
+background-repeat: no-repeat;
+height: 80vh;
+width: 220px;
+margin-left: auto;
+margin-right: auto;
+}
+.display-bottles {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 25% 15% 15% 15% 12% 18%;
+  height: 80vh;
+width: 160px;
+margin-left: 30px;
+align-items: end;
+}
+
+.drinksImages {
+  height: 70px;
+  margin: 0 2px;
+}
+
+.drinksImages:hover{
+  height: 80px;
+
+  }
+
+.outdoorSeatingImg {
+  width: 300px;
+  height: 200px;
+  margin-top: 350px;
+}
+
+.bathroomImg {
+  height: 500px;
+  width: auto;
+  margin-top: 50px;
+}
+
+.atmImg {
+  height: 400px;
+  width: auto;
+  margin-top: 150px;
+}
+
+.bathroom {
+  text-align: center;
+  padding: 0 5%
+}
+
+.atm {
+  text-align: center
+}
+
+.outdoorSeating {
+  text-align: center;
+  padding: 0 5%;
+}
