@@ -39,7 +39,7 @@ const addMarker = (event) => {
   popup
     .setLngLat(coordinates)
     .setHTML(
-      '<form action="/new" method="POST"><div><button type="submit">Add a Späti Here 🎯</button></div></form><div><button>Remove Marker</button></div>'
+      '<div><button onclick="window.location.replace(`/new/?street=${street}&plz=${plz}&city=${city}`)">Add a Späti Here 🎯</button></div><div><button>Remove Marker</button></div>'
     )
     // .setMaxWidth('200px')
     // you can also add a form or button to send something off
@@ -76,6 +76,9 @@ const addMarker = (event) => {
       street = splitAddress[0];
       plz = plzCity[1];
       city = plzCity[2];
+      console.log(street);
+      // axios.get(`/new/?street=${street}&plz=${plz}&city=${city}`)
+      // window.location.replace(`/new/?street=${street}&plz=${plz}&city=${city}`)
     }
   });
   // removes but adds another marker to the same spot

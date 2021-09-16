@@ -16,6 +16,9 @@ const { loginCheck } = require('./middlewares');
 router.get('/new', (req, res, next) => {
   Spaeti.find().then((spaetiFromDB) => {
     res.render('new', { spaetis: spaetiFromDB });
+    const plz = req.query.plz || "";
+    const city = req.query.city || "";
+    const address = req.query.address || "";
   });
 });
 
@@ -25,8 +28,8 @@ router.get('/spaeti', (req, res, next) => {
   Spaeti.find()
     .then((spaetiFromDB) => {
       
-      res.render('spaeti', { spaetis: spaetiFromDB });
-      // res.json(spaetiFromDB);
+      // res.render('spaeti', { spaetis: spaetiFromDB });
+      res.json(spaetiFromDB);
     })
     .catch((err) => {
       next(err);
