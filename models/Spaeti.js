@@ -10,6 +10,10 @@ const spaetiSchema = new Schema({
       city: String,
     },
   },
+  owner: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
   latitude: Number,
   longitude: Number,
   reviews: [

@@ -97,6 +97,7 @@ router.post('/spaeti', (req, res, next) => {
       hasWC: hasWC,
       inventory: inventory,
       price: price,
+      owner: req.user._id
     })
     .then((createdSpaeti) => {
       console.log('back end log', createdSpaeti); 
@@ -109,12 +110,10 @@ router.post('/spaeti', (req, res, next) => {
 router.get('/spaeti/delete/:id', loginCheck(), (req, res, next) => {
   
 	const spaetiId = req.params.id;
-  const query = { _id: spaetiId }
-  if (req.user.role !== 'owner') {
-    query.owner = req.user._id
-  }
-	Spaeti.findByIdAndDelete(query)
-    .then(() => res.redirect('/'))
+  const query = { _id: spaetiId, owner: req.user._id }
+  console.log(query)
+	Spaeti.findOneAndDelete(query)
+    .then(() => res.redirect('/spaetis'))
     .catch(err => next(err));
 });
 

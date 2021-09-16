@@ -30,6 +30,7 @@ let plz;
 
 const addMarker = (event) => {
   coordinates = event.lngLat;
+  
   marker = new mapboxgl.Marker({
     color: "red",
   })
@@ -39,7 +40,7 @@ const addMarker = (event) => {
   popup
     .setLngLat(coordinates)
     .setHTML(
-      '<div><button onclick="window.location.replace(`/new/?street=${street}&plz=${plz}&city=${city}`)">Add a Späti Here 🎯</button></div><div><button>Remove Marker</button></div>'
+      '<div><button onclick="window.location.replace(`/new/?street=${street}&plz=${plz}&city=${city}`)">Add a Späti Here 🎯</button></div>'
     )
     // .setMaxWidth('200px')
     // you can also add a form or button to send something off
