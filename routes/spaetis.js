@@ -106,13 +106,13 @@ router.post('/spaeti', (req, res, next) => {
 router.get('/spaeti/delete/:id', loginCheck(), (req, res, next) => {
   
 	const spaetiId = req.params.id;
-	Spaeti.findByIdAndDelete(spaetiId)
-		.then(() => {
-			res.redirect('/');
-		})
-		.catch(err => {
-			next(err);
-		})
+  const query = { _id: spaetiId }
+  if (req.user.role !== 'owner') {
+    query.owner = req.user._id
+  }
+	Spaeti.findByIdAndDelete(query)
+    .then(() => res.redirect('/'))
+    .catch(err => next(err));
 });
 
 // show Späti details

@@ -7,6 +7,11 @@ const userSchema = new Schema({
   },
   password: String,
   avatar: String,
+  role: {
+    type: String,
+    enum: ['user', 'owner'],
+    default: 'user'
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
