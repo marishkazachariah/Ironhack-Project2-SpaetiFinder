@@ -58,7 +58,7 @@
   <div class='reviewScroll'>
 		<div class="card mb-3">
       <div class="card-body">
-      <h4 class= "card-title">{{user}}</h4>
+      <h4 class= "card-title card-title2">{{user}}</h4>
 			<p class="card-text">Review: {{text}}</p>
 		</div>
  
@@ -75,7 +75,7 @@
 
 <form action="/spaeti/{{spaeti._id}}/reviews" method="POST">
 	<label for="text">Your review: </label>
-	<input class="form-control" type="text" name="text" id="text">
+	<input class="form-control form-control2" type="text" name="text" id="text">
 	<button class="btn btn-success" type="submit">Add this review</button>
 </form>
 
