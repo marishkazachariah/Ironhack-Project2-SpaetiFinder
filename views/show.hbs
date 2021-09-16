@@ -45,3 +45,10 @@
 </form>
 
 <a href='/spaeti/edit/{{spaeti._id}}'>Edit this Späti ✏️</a>
+
+
+<div>
+{{#if user}}
+<a href="/spaeti/delete/{{spaeti._id}}">Delete this Späti from the database ❌</a>
+{{/if}}
+</div>
