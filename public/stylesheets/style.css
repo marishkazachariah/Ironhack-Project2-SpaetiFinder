@@ -11,6 +11,24 @@ h1 {
   color: 15px;
 }
 
+.geocoder {
+  position: absolute;
+  z-index: 1;
+  width: 0%;
+  left: 0%;
+  margin-left: 0%;
+  top: 0px;
+  }
+  .mapboxgl-ctrl-geocoder {
+  min-width: 0%;
+  display:none;
+  }
+
+  .mapboxgl-ctrl-geocoder--input {
+    min-width: 0%;
+    display:none;
+  }
+
 .showHeading {
   text-align: center;
 }
