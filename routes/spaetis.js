@@ -25,8 +25,8 @@ router.get('/spaeti', (req, res, next) => {
   Spaeti.find()
     .then((spaetiFromDB) => {
       
-      res.render('spaeti', { spaetis: spaetiFromDB });
-      // res.json(spaetiFromDB);
+      // res.render('spaeti', { spaetis: spaetiFromDB });
+      res.json(spaetiFromDB);
     })
     .catch((err) => {
       next(err);
