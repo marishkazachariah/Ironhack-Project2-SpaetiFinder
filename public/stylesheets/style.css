@@ -14,11 +14,17 @@ h1 {
 .geocoder {
   position: absolute;
   z-index: 1;
-  width: 50%;
-  left: 50%;
-  margin-left: -25%;
-  top: 10px;
+  width: 0%;
+  left: 0%;
+  margin-left: 0%;
+  top: 0px;
   }
   .mapboxgl-ctrl-geocoder {
-  min-width: 100%;
+  min-width: 0%;
+  display:none;
+  }
+
+  .mapboxgl-ctrl-geocoder--input {
+    min-width: 0%;
+    display:none;
   }
