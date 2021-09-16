@@ -105,11 +105,25 @@ const addMarker = (event) => {
 
 
 map.on("click", addMarker);
-// axios.post('/', (req, res, next) => {
-//   req.body = markers;
-// })
-// .then((response) => {
-//   console.log(response);
-// }, (error) => {
-//   next(error);
-// });
+
+// show the createdSpäti on the map as a marker
+axios.get('/spaeti/')
+  .then(res => {
+    //console.log(res)
+    const spaetis = res.data
+    for (let i = 0; i < spaetis.length; i++) {
+      const coord = [spaetis[i].longitude, spaetis[i].latitude]
+      //console.log(coord)
+      addMarker2(coord)
+     }
+  })
+
+  async function addMarker2 (coord) {
+    //console.log(mapboxgl)
+    await new mapboxgl.Marker({
+        color: "red",
+      })
+        .setLngLat(coord)
+        .addTo(map) 
+}
+  

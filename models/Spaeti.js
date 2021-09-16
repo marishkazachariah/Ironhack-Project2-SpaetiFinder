@@ -14,10 +14,7 @@ const spaetiSchema = new Schema({
   longitude: Number,
   reviews: [
     {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
+      user: String,
       text: String,
     },
   ],
