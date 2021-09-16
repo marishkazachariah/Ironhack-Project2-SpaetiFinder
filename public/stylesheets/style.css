@@ -72,7 +72,11 @@ h1 {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  border: 2px solid black;
+  padding: 20px;
+  height: 90vh;
 }
+
 
 .display-fridge {
 background-image: url("/images/facilities/display-fridge.png");
@@ -105,26 +109,25 @@ align-items: end;
   }
 
 .outdoorSeatingImg {
-  width: 300px;
-  height: 200px;
+  width: 200px;
+  height: 100px;
   margin-top: 350px;
 }
 
 .bathroomImg {
-  height: 500px;
+  height: 400px;
   width: auto;
   margin-top: 50px;
 }
 
 .atmImg {
-  height: 400px;
+  height: 300px;
   width: auto;
   margin-top: 150px;
 }
 
 .bathroom {
   text-align: center;
-  padding: 0 5%
 }
 
 .atm {
@@ -133,5 +136,45 @@ align-items: end;
 
 .outdoorSeating {
   text-align: center;
-  padding: 0 5%;
+}
+
+.productPrice {
+  text-align: center;
+}
+
+.editLink {
+ text-decoration: none;
+ padding: 20px 0;
+}
+
+.deleteLink {
+text-decoration: none;
+padding: 20px 0
+}
+
+
+.form-control2 {
+  width: 400px;
+  margin: 20px 0;
+}
+
+h3 {
+  padding: 20px 0;
+}
+
+.card-title2 {
+  color: rgb(29, 20, 102);
+}
+
+.mainDiv {
+  display: flex
+}
+
+.reviews {
+  border: 2px solid black;
+  padding: 20px;
+  margin: 0 20px;
+  height: 90vh;
+  overflow: auto;
+  width: 35vw
 }
