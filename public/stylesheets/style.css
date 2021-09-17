@@ -67,6 +67,8 @@ h1 {
 
 .showHeading {
   text-align: center;
+  font-family: 'Staatliches', cursive;
+  margin-top: 30px;
 }
 .showPageDiv {
   display: flex;
@@ -75,6 +77,9 @@ h1 {
   border: 2px solid black;
   padding: 20px;
   height: 90vh;
+  background-color: white;
+  margin-left: 50px;
+  margin-bottom: 50px;
 }
 
 
@@ -111,19 +116,19 @@ align-items: end;
 .outdoorSeatingImg {
   width: 200px;
   height: 100px;
-  margin-top: 350px;
+  margin-top: 420px;
 }
 
 .bathroomImg {
   height: 400px;
   width: auto;
-  margin-top: 50px;
+  margin-top: 120px;
 }
 
 .atmImg {
   height: 300px;
   width: auto;
-  margin-top: 150px;
+  margin-top: 220px;
 }
 
 .bathroom {
@@ -176,5 +181,19 @@ h3 {
   margin: 0 20px;
   height: 90vh;
   overflow: auto;
-  width: 35vw
+  width: 35vw;
+  margin-bottom: 50px;
+  background-color: white;
+}
+
+.productPrice {
+  background-color: seagreen;
+  color: white;
+}
+
+.headingText {
+  background-color: rgb(172, 172, 172);
+  padding: 2px;
+  margin-bottom: 10px;
+  border: 2px solid white;
 }
