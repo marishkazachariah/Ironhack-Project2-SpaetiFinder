@@ -26,8 +26,8 @@ router.get('/new', (req, res, next) => {
 router.get('/spaetis', (req, res, next) => {
   Spaeti.find()
     .then((spaetiFromDB) => {
-      console.log(spaetiFromDB)
-      res.render('spaetizz', { spaetis: spaetiFromDB });
+      const loggedInUser = req.user;
+      res.render('spaetizz', { spaetis: spaetiFromDB,  user: loggedInUser });
       
       
     })
