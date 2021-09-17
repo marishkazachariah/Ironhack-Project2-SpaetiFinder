@@ -129,6 +129,7 @@ let hasWC = document.querySelector('#hasWC').value
       .then(createdSpaeti => {
         console.log(createdSpaeti)
         window.location.replace(`https://spaeti-finder.herokuapp.com/spaeti/${createdSpaeti.data._id}`)
+        // window.location.replace(`http://localhost:3000/spaeti/${createdSpaeti.data._id}`)
       })
     }
   </script>
