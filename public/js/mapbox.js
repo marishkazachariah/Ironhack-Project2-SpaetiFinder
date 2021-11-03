@@ -112,19 +112,19 @@ map.on("click", addMarker);
 
 // show the createdSpäti on the map as a marker
 axios.get('/spaeti/')
-  .then(res => {
+  .then(async res => {
     //console.log(res)
     const spaetis = res.data
+    console.log(res.data);
     for (let i = 0; i < spaetis.length; i++) {
-      const coord = [spaetis[i].longitude, spaetis[i].latitude]
-      //console.log(coord)
-      addMarker2(coord)
+      const coord = [spaetis[i].latitude, spaetis[i].longitude]
+      await addMarker2(coord)
      }
   })
 
-  async function addMarker2 (coord) {
-    //console.log(mapboxgl)
-    await new mapboxgl.Marker({
+  function addMarker2 (coord) {
+   console.log(coord);
+    new mapboxgl.Marker({
         color: "red",
       })
         .setLngLat(coord)
